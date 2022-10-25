@@ -128,7 +128,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             val result = reader.decode(bitmap)
             Toast.makeText(this, "${result.text}", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            showAlertDialogConfirm("", getString(R.string.image_has_no_qr)) {}
+            showDialogConfirm("", getString(R.string.image_has_no_qr)) {}
         }
     }
 
