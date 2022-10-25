@@ -5,4 +5,8 @@
     <string name="ok">OK</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_confirm">Confirm</string>
+    <string name="result">RESULT</string>
+    <string name="copy">Sao chép</string>
+    <string name="open_browser">Mở trình duyệt</string>
+    <string name="share">Chia sẻ</string>
 </resources>

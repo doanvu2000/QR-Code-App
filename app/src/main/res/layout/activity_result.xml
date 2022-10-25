@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/green"
+        android:fontFamily="@font/ptsansnarrowbold"
+        android:gravity="center"
+        android:text="@string/result"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/bg_result"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/ptsansnarrowbold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="https://www.youtube.com/watch?v=GifeSespCYQ&amp;ab_channel=H%E1%BA%A1Sang" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCopy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_button_copy"
+            android:fontFamily="@font/ptsansnarrowbold"
+            android:text="@string/copy"
+            android:textAllCaps="false"
+            android:textColor="#2EAC79"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp">
+
+            <ImageView
+                android:id="@+id/btnOpenBrowser"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/world"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/ptsansnarrowbold"
+                android:text="@string/open_browser"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnOpenBrowser" />
+
+            <ImageView
+                android:id="@+id/btnShare"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/share"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/ptsansnarrowbold"
+                android:text="@string/share"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnOpenBrowser" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+    </LinearLayout>
+</LinearLayout>

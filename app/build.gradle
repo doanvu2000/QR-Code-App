@@ -65,4 +65,7 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:3.7.2'
 
+    //MMKV
+    implementation 'com.tencent:mmkv-static:1.2.12'
+
 }
