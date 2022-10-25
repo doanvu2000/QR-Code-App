@@ -18,6 +18,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
     override fun initView() {
         initData()
         binding.tvResult.text = result
+        supportActionBar?.hide()
     }
 
     override fun initListener() {
