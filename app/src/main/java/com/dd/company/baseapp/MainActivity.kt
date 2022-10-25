@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import com.dd.company.baseapp.base.BaseActivity
 import com.dd.company.baseapp.databinding.ActivityMainBinding
 import com.dd.company.baseapp.extensions.openAppSetting
-import com.dd.company.baseapp.extensions.showAlertDialogConfirm
+import com.dd.company.baseapp.extensions.showDialogConfirm
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
@@ -35,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (!isGranted) {
-                showAlertDialogConfirm(
+                showDialogConfirm(
                     "",
                     "Bạn chưa cấp quyền sử dụng máy ảnh, để sử dụng ứng dụng vui lòng bật quyền truy cập camera"
                 ) {
