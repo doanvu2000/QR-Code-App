@@ -3,9 +3,12 @@ package com.dd.company.baseapp.extensions
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import android.util.TypedValue
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 
 fun Context.getColorWithAttr(resId: Int): Int {
     val typedValue = TypedValue()
@@ -41,3 +44,11 @@ fun Context.sendEmail(isContact: Boolean = true) {
 
 fun Context.isGrantedPermission(permission: String): Boolean =
     ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+
+fun Context.openAppSetting() {
+    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    val uri = Uri.fromParts("package", packageName, null)
+    intent.data = uri
+    startActivity(intent)
+}

@@ -9,4 +9,5 @@
     <string name="copy">Sao chép</string>
     <string name="open_browser">Mở trình duyệt</string>
     <string name="share">Chia sẻ</string>
+    <string name="non_permission">Bạn chưa cấp quyền sử dụng máy ảnh, để sử dụng ứng dụng vui lòng bật quyền truy cập camera</string>
 </resources>
