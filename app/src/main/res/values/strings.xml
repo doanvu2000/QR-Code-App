@@ -5,4 +5,7 @@
     <string name="ok">OK</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_confirm">Confirm</string>
+    <string name="choose_image">Choose image from gallery</string>
+    <string name="history_scan">Show history scan</string>
+    <string name="image_has_no_qr">Image hasn\'t QR code</string>
 </resources>
