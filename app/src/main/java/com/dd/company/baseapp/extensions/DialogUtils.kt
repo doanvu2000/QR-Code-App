@@ -5,7 +5,7 @@ import android.view.*
 import com.dd.company.baseapp.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-fun Context.showDialogConfirm(title: String?, message: String?, callbackPos: () -> Unit) {
+fun Context.showDialogConfirm(title: String?, message: String?, isShowCancel: Boolean = true, callbackPos: () -> Unit) {
     val builder = MaterialAlertDialogBuilder(this)
     builder.apply {
         setTitle(title)
@@ -13,8 +13,10 @@ fun Context.showDialogConfirm(title: String?, message: String?, callbackPos: () 
         setPositiveButton(getString(R.string.ok)) { _, _ ->
             callbackPos.invoke()
         }
-        setNegativeButton(getString(R.string.text_cancel)) { dialog, _ ->
-            dialog.dismiss()
+        if (isShowCancel) {
+            setNegativeButton(getString(R.string.text_cancel)) { dialog, _ ->
+                dialog.dismiss()
+            }
         }
         show()
     }
