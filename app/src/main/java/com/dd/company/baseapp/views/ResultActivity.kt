@@ -10,6 +10,8 @@ import com.dd.company.baseapp.base.BaseActivity
 import com.dd.company.baseapp.base.RESULT
 import com.dd.company.baseapp.databinding.ActivityResultBinding
 import com.dd.company.baseapp.extensions.setOnSafeClick
+import com.dd.company.baseapp.utils.openActivity
+import com.dd.company.baseapp.views.main.HistoryActivity
 
 
 class ResultActivity : BaseActivity<ActivityResultBinding>() {
@@ -33,6 +35,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
             btnShare.setOnSafeClick { shareData() }
             tvShare.setOnSafeClick { shareData() }
             btnBack.setOnSafeClick { onBackPressed() }
+            btnHistory.setOnSafeClick { openActivity(HistoryActivity::class.java) }
         }
     }
 

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseApp">
         <activity
-            android:name="com.dd.company.baseapp.MainActivity"
+            android:name="com.dd.company.baseapp.views.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +22,10 @@
         </activity>
         <activity
             android:name=".views.ResultActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
+        <activity
+            android:name=".views.main.HistoryActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

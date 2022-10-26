@@ -1,4 +1,4 @@
-package com.ducdiep.bookmarket.extensions
+package com.dd.company.baseapp.extensions
 
 import android.view.View
 import androidx.viewbinding.ViewBinding

@@ -38,9 +38,10 @@ class AlertMessageDialog(val context: Context) {
         title: String?,
         message: String? = "",
         buttonAction: String? = "",
-        isActionCancel: Boolean = false,
-        isAllCaps: Boolean = false,
-        cancelAble: Boolean = true,
+        buttonCancel: String? = "",
+        isActionCancel: Boolean? = false,
+        isAllCaps: Boolean? = false,
+        cancelAble: Boolean? = true,
         onClickCancel: (() -> Unit?)? = null,
         onClickSubmit: (() -> Unit?)? = null,
     ) {
@@ -54,7 +55,8 @@ class AlertMessageDialog(val context: Context) {
         }
         if (!message.isNullOrBlank()) binding.dialogMsg.text = message
         if (!buttonAction.isNullOrBlank()) binding.btnSubmit.text = buttonAction
-        binding.dialogMsg.isAllCaps = isAllCaps
+        if (!buttonAction.isNullOrBlank()) binding.btnSubmitCancel.text = buttonCancel
+        binding.dialogMsg.isAllCaps = isAllCaps ?: false
 
         binding.btnSubmit.setOnClickListener {
             onClickSubmit?.invoke()
@@ -66,12 +68,12 @@ class AlertMessageDialog(val context: Context) {
             dialog.dismiss()
         }
 
-        if (isActionCancel) {
+        if (isActionCancel == true) {
             binding.btnSubmitCancel.visibility = View.VISIBLE
         }
 
 
-        dialog.setCancelable(cancelAble)
+        dialog.setCancelable(cancelAble ?: false)
 
         if (!dialog.isShowing)
             dialog.show()

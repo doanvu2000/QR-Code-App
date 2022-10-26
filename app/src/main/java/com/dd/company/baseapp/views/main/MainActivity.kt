@@ -1,4 +1,4 @@
-package com.dd.company.baseapp
+package com.dd.company.baseapp.views.main
 
 import android.Manifest
 import android.content.Intent
@@ -7,23 +7,29 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import com.dd.company.baseapp.R
 import com.dd.company.baseapp.base.BaseActivity
+import com.dd.company.baseapp.base.HISTORY
 import com.dd.company.baseapp.base.RESULT
 import com.dd.company.baseapp.databinding.ActivityMainBinding
 import com.dd.company.baseapp.extensions.openAppSetting
 import com.dd.company.baseapp.extensions.showDialogConfirm
+import com.dd.company.baseapp.model.History
 import com.dd.company.baseapp.pref.LocalCache
+import com.dd.company.baseapp.utils.openActivity
 import com.dd.company.baseapp.views.ResultActivity
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
+import com.tencent.mmkv.MMKV
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -49,8 +55,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
     override fun initView() {
+        LocalCache.initialize(this)
         binding.barcodeView.setStatusText("")
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#1CAB74")))
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#2DC9BC")))
     }
 
     override fun initListener() {
@@ -58,7 +65,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initData() {
-        LocalCache.initialize(this)
     }
 
     private fun checkPermission() {
@@ -85,6 +91,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             it.pause()
             it.decodeSingle(object : BarcodeCallback {
                 override fun barcodeResult(result: BarcodeResult?) {
+                    saveToHistory(result?.text ?: "")
                     val intent = Intent(this@MainActivity, ResultActivity::class.java)
                     intent.putExtra(RESULT, result?.text ?: "")
                     startActivity(intent)
@@ -102,6 +109,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
+    private fun saveToHistory(result: String) {
+        val history = LocalCache.getInstance().getParcelable(HISTORY, History::class.java) ?: History()
+        history.listData.add(0, result)
+        LocalCache.getInstance().put(HISTORY, history)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -110,7 +123,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.choose_image -> requestPickImage.launch("image/*")
-            R.id.history -> Toast.makeText(this, "Show History Screen", Toast.LENGTH_SHORT).show()
+            R.id.history -> openActivity(HistoryActivity::class.java)
         }
         return super.onOptionsItemSelected(item)
     }
