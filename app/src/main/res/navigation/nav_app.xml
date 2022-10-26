@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.dd.company.baseapp.views.main.HistoryActivity"
+        android:name="com.dd.company.qrapp.views.main.HistoryActivity"
         tools:layout="@layout/activity_history">
         <action
             android:id="@+id/to_Second_Fragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.dd.company.baseapp.views.main.SecondFragment"
+        android:name="com.dd.company.qrapp.views.main.SecondFragment"
         tools:layout="@layout/activity_history" />
 
 </navigation>

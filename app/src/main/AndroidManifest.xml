@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dd.company.baseapp">
+    package="com.dd.company.qrapp">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/qr_scan"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/qr_scan"
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseApp">
         <activity
-            android:name="com.dd.company.baseapp.views.main.MainActivity"
+            android:name="com.dd.company.qrapp.views.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.ResultActivity"
-            android:exported="true"></activity>
+            android:name="com.dd.company.qrapp.views.ResultActivity"
+            android:exported="true" />
         <activity
-            android:name=".views.main.HistoryActivity"
-            android:exported="true"></activity>
+            android:name="com.dd.company.qrapp.views.main.HistoryActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

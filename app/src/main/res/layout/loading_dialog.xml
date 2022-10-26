@@ -8,7 +8,7 @@
     android:paddingHorizontal="23dp"
     android:paddingVertical="13.44dp">
 
-    <com.dd.company.baseapp.widget.loading.LoadingAnimView
+    <com.dd.company.qrapp.widget.loading.LoadingAnimView
         android:id="@+id/loadingView"
         android:layout_width="80dp"
         android:layout_height="80dp" />

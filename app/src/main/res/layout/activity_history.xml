@@ -7,7 +7,7 @@
     android:background="#74E1D8"
     android:orientation="vertical">
 
-    <com.dd.company.baseapp.widget.toolbar.ToolBarApp
+    <com.dd.company.qrapp.widget.toolbar.ToolBarApp
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
