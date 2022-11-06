@@ -13,10 +13,12 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.dd.company.qrapp.R
+import com.dd.company.qrapp.databinding.ActivityMainBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
-import com.dd.company.qrapp.databinding.ActivityMainBinding
 import com.dd.company.qrapp.extensions.openAppSetting
 import com.dd.company.qrapp.extensions.showDialogConfirm
 import com.dd.company.qrapp.model.History
@@ -59,6 +61,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initListener() {
+        MobileAds.initialize(this){}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
         checkPermission()
     }
 
