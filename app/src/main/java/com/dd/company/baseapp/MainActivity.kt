@@ -14,6 +14,8 @@ import com.dd.company.baseapp.base.BaseActivity
 import com.dd.company.baseapp.databinding.ActivityMainBinding
 import com.dd.company.baseapp.extensions.openAppSetting
 import com.dd.company.baseapp.extensions.showDialogConfirm
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
@@ -49,6 +51,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initListener() {
+        MobileAds.initialize(this){}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
         checkPermission()
     }
 
