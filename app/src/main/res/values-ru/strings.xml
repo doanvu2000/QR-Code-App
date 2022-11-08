@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Приложение QR-кода</string>
+    <string name="ok">ХОРОШО</string>
+    <string name="text_cancel">Отмена</string>
+    <string name="text_confirm">Подтверждать</string>
+    <string name="result">РЕЗУЛЬТАТ</string>
+    <string name="copy">Копировать</string>
+    <string name="open_browser">Открыть браузер</string>
+    <string name="share">Делиться</string>
+    <string name="non_permission">Вы не предоставили разрешение на использование камеры. Чтобы использовать приложение, разрешите доступ к камере.</string>
+    <string name="choose_image">Выбрать изображение из галереи</string>
+    <string name="history_scan">Показать историю сканирования</string>
+    <string name="image_has_no_qr">Изображение не имеет QR-кода</string>
+</resources>

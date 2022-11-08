@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">แอปรหัส QR</string>
+    <string name="ok">ตกลง</string>
+    <string name="text_cancel">ยกเลิก</string>
+    <string name="text_confirm">ยืนยัน</string>
+    <string name="result">ผลลัพธ์</string>
+    <string name="copy">สำเนา</string>
+    <string name="open_browser">เปิดเบราว์เซอร์</string>
+    <string name="share">แบ่งปัน</string>
+    <string name="non_permission">คุณไม่ได้รับอนุญาตให้ใช้กล้องเพื่อใช้งานแอปพลิเคชันโปรดเปิดใช้งานการเข้าถึงกล้อง</string>
+    <string name="choose_image">เลือกรูปภาพจากแกลเลอรี่</string>
+    <string name="history_scan">แสดงการสแกนประวัติ</string>
+    <string name="image_has_no_qr">รูปภาพไม่มีรหัส QR</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aplikasi Kode QR</string>
+    <string name="ok">Oke</string>
+    <string name="text_cancel">Membatalkan</string>
+    <string name="text_confirm">Mengonfirmasi</string>
+    <string name="result">HASIL</string>
+    <string name="copy">Salinan</string>
+    <string name="open_browser">Buka peramban</string>
+    <string name="share">Membagikan</string>
+    <string name="non_permission">Anda belum memberikan izin untuk menggunakan kamera, untuk menggunakan aplikasi harap aktifkan akses kamera</string>
+    <string name="choose_image">Pilih gambar dari galeri</string>
+    <string name="history_scan">Tampilkan pemindaian riwayat</string>
+    <string name="image_has_no_qr">Gambar tidak memiliki kode QR</string>
+</resources>
+

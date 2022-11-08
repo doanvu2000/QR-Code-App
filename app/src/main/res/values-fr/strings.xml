@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Application de code QR</string>
+    <string name="ok">D\'ACCORD</string>
+    <string name="text_cancel">Annuler</string>
+    <string name="text_confirm">Confirmer</string>
+    <string name="result">RÉSULTAT</string>
+    <string name="copy">Copie</string>
+    <string name="open_browser">Navigateur ouvert</string>
+    <string name="share">Partager</string>
+    <string name="non_permission">Vous n\'avez pas accordé l\'autorisation d\'utiliser la caméra, pour utiliser l\'application, veuillez activer l\'accès à la caméra</string>
+    <string name="choose_image">Choisissez l\'image de la galerie</string>
+    <string name="history_scan">Afficher l\'analyse de l\'historique</string>
+    <string name="image_has_no_qr">L\'image n\'a pas de code QR</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">二維碼應用</string>
+    <string name="ok">好的</string>
+    <string name="text_cancel">取消</string>
+    <string name="text_confirm">確認</string>
+    <string name="result">結果</string>
+    <string name="copy">複製</string>
+    <string name="open_browser">打開瀏覽器</string>
+    <string name="share">分享</string>
+    <string name="non_permission">您尚未授予使用相機的權限，要使用該應用程序，請啟用相機訪問權限</string>
+    <string name="choose_image">從圖庫中選擇圖像</string>
+    <string name="history_scan">顯示歷史掃描</string>
+    <string name="image_has_no_qr">圖片沒有二維碼</string>
+</resources>
