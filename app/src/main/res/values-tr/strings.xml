@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR Kod Uygulaması</string>
+    <string name="ok">TAMAM</string>
+    <string name="text_cancel">İptal</string>
+    <string name="text_confirm">Onaylamak</string>
+    <string name="result">SONUÇ</string>
+    <string name="copy">kopyala</string>
+    <string name="open_browser">Tarayıcı aç</string>
+    <string name="share">Paylaşmak</string>
+    <string name="non_permission">Kamerayı kullanma izni vermediniz, uygulamayı kullanmak için lütfen kamera erişimini etkinleştirin</string>
+    <string name="choose_image">Galeriden resim seçin</string>
+    <string name="history_scan">Geçmiş taramasını göster</string>
+    <string name="image_has_no_qr">Resimde QR kodu yok</string>
+</resources>

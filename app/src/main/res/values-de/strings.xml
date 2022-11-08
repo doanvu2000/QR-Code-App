@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR-Code-App</string>
+    <string name="ok">OK</string>
+    <string name="text_cancel">Absagen</string>
+    <string name="text_confirm">Bestätigen</string>
+    <string name="result">ERGEBNIS</string>
+    <string name="copy">Kopieren</string>
+    <string name="open_browser">Browser öffnen</string>
+    <string name="share">Teilen</string>
+    <string name="non_permission">Sie haben keine Berechtigung zur Verwendung der Kamera erteilt. Um die Anwendung zu verwenden, aktivieren Sie bitte den Kamerazugriff</string>
+    <string name="choose_image">Wählen Sie ein Bild aus der Galerie</string>
+    <string name="history_scan">Verlaufsscan anzeigen</string>
+    <string name="image_has_no_qr">Bild hat keinen QR-Code</string>
+</resources>

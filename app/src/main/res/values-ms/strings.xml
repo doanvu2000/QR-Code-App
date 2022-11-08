@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Apl Kod QR</string>
+    <string name="ok">okey</string>
+    <string name="text_cancel">Batal</string>
+    <string name="text_confirm">sahkan</string>
+    <string name="result">KEPUTUSAN</string>
+    <string name="copy">Salinan</string>
+    <string name="open_browser">Buka pelayar</string>
+    <string name="share">Kongsi</string>
+    <string name="non_permission">Anda belum memberikan kebenaran untuk menggunakan kamera, untuk menggunakan aplikasi sila dayakan akses kamera</string>
+    <string name="choose_image">Pilih imej daripada galeri</string>
+    <string name="history_scan">Tunjukkan imbasan sejarah</string>
+    <string name="image_has_no_qr">Imej tidak mempunyai kod QR</string>
+</resources>

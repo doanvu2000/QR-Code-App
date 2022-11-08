@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">क्यूआर कोड ऐप</string>
+    <string name="ok">ठीक है</string>
+    <string name="text_cancel">रद्द करना</string>
+    <string name="text_confirm">पुष्टि करें</string>
+    <string name="result">नतीजा</string>
+    <string name="copy">प्रतिलिपि</string>
+    <string name="open_browser">खुला ब्राउज़र</string>
+    <string name="share">शेयर करना</string>
+    <string name="non_permission">आपने कैमरे का उपयोग करने की अनुमति नहीं दी है, एप्लिकेशन का उपयोग करने के लिए कृपया कैमरा एक्सेस सक्षम करें</string>
+    <string name="choose_image">गैलरी से छवि चुनें</string>
+    <string name="history_scan">इतिहास स्कैन दिखाएं</string>
+    <string name="image_has_no_qr">इमेज में क्यूआर कोड नहीं है</string>
+</resources>

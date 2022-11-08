@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ứng dụng quét mã QR</string>
+    <string name="ok">OK</string>
+    <string name="text_cancel">Hủy bỏ</string>
+    <string name="text_confirm">Xác nhận</string>
+    <string name="result">Kết quả</string>
+    <string name="copy">Sao chép</string>
+    <string name="open_browser">Mở trình duyệt</string>
+    <string name="share">Chia sẻ</string>
+    <string name="non_permission">Bạn chưa cấp quyền sử dụng máy ảnh, để sử dụng ứng dụng, vui lòng bật quyền truy cập máy ảnh</string>
+    <string name="choose_image">Chọn hình ảnh từ thư viện</string>
+    <string name="history_scan">Hiển thị quét lịch sử</string>
+    <string name="image_has_no_qr">Hình ảnh không có mã QR</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR Code App</string>
+    <string name="ok">OK</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_confirm">Confirm</string>
+    <string name="result">RESULT</string>
+    <string name="copy">Copy</string>
+    <string name="open_browser">Open browser</string>
+    <string name="share">Share</string>
+    <string name="non_permission">You have not granted permission to use the camera, to use the application please enable camera access</string>
+    <string name="choose_image">Choose image from gallery</string>
+    <string name="history_scan">Show history scan</string>
+    <string name="image_has_no_qr">Image has not QR code</string>
+</resources>
