@@ -7,29 +7,32 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.dd.company.qrapp.R
-import com.dd.company.qrapp.databinding.ActivityMainBinding
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
+import com.dd.company.qrapp.databinding.ActivityMainBinding
 import com.dd.company.qrapp.extensions.openAppSetting
 import com.dd.company.qrapp.extensions.showDialogConfirm
 import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.utils.openActivity
 import com.dd.company.qrapp.views.ResultActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
+import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -61,8 +64,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initListener() {
-        MobileAds.initialize(this){}
-        val adRequest = AdRequest.Builder().build()
+        //First: see your log: Use RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()....
+        //set up test device
+        val testDeviceIds = listOf("A57F2822EA738A475172B5A0C9D42961")
+        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+        MobileAds.setRequestConfiguration(configuration)
+        MobileAds.initialize(this){
+        }
+        val adRequest = AdRequest.Builder()
+            .build()
+        Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
         binding.adView.loadAd(adRequest)
         checkPermission()
     }
