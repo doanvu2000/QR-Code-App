@@ -124,10 +124,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/banner"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:visibility="gone" />
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-7304974533758848/5274950434">
+        </com.google.android.gms.ads.AdView>
     </LinearLayout>
 </LinearLayout>

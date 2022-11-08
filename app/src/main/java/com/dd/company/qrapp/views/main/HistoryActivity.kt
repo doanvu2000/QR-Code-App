@@ -3,6 +3,7 @@ package com.dd.company.qrapp.views.main
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.util.Log
 import com.dd.company.qrapp.R
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
@@ -13,6 +14,7 @@ import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.views.adapter.HistoryAdapter
 import com.dd.company.qrapp.widget.dialog.AlertMessageDialog
 import com.dd.company.qrapp.widget.recyclerview.RecyclerUtils
+import com.google.android.gms.ads.AdRequest
 
 class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
 
@@ -24,6 +26,10 @@ class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
         supportActionBar?.hide()
         initRecyclerView()
         binding.toolbar.setTitleColor(R.color.white)
+        val adRequest = AdRequest.Builder()
+            .build()
+        Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
+        binding.adView.loadAd(adRequest)
     }
 
     private fun initRecyclerView() {

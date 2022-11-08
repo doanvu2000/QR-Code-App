@@ -24,6 +24,7 @@ import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.utils.openActivity
 import com.dd.company.qrapp.views.ResultActivity
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
@@ -32,7 +33,6 @@ import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
-import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -76,6 +76,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
         binding.adView.loadAd(adRequest)
         checkPermission()
+        binding.adView.adListener = object : AdListener(){
+            override fun onAdLoaded() {
+                Log.d("dddd", "Ad is loaded!")
+            }
+
+            override fun onAdClosed() {
+                Log.d("dddd", "Ad is closed!")
+            }
+
+            fun onAdFailedToLoad(errorCode: Int) {
+                Log.d("dddd", "Ad failed to load! error code: $errorCode")
+            }
+
+            fun onAdLeftApplication() {
+                Log.d("dddd", "Ad left application!")
+            }
+
+            override fun onAdOpened() {
+                Log.d("dddd", "Ad is opened!")
+            }
+        }
     }
 
     override fun initData() {

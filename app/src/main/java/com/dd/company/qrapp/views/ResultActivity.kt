@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.RESULT
@@ -12,6 +13,7 @@ import com.dd.company.qrapp.databinding.ActivityResultBinding
 import com.dd.company.qrapp.extensions.setOnSafeClick
 import com.dd.company.qrapp.utils.openActivity
 import com.dd.company.qrapp.views.main.HistoryActivity
+import com.google.android.gms.ads.AdRequest
 
 
 class ResultActivity : BaseActivity<ActivityResultBinding>() {
@@ -21,6 +23,10 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
         initData()
         binding.tvResult.text = result
         supportActionBar?.hide()
+        val adRequest = AdRequest.Builder()
+            .build()
+        Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
+        binding.adView.loadAd(adRequest)
     }
 
     override fun initListener() {
