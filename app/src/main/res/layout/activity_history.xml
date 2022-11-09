@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,6 +16,11 @@
         app:drawable_start="@drawable/icon_back"
         app:title="History"
         app:title_color="@color/white" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvHistory"
@@ -32,6 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-7304974533758848/5274950434"/>
+        ads:adUnitId="ca-app-pub-7304974533758848/5274950434" />
 
 </LinearLayout>
