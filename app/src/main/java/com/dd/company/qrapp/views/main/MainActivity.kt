@@ -71,9 +71,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun initTestDevice() {
         //First: see your log: Use RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()....
         //set up test device
-        val testDeviceIds = listOf("A9D3CCFDFE7EFAF324465227C5FA8E44")
-        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
-        MobileAds.setRequestConfiguration(configuration)
+//        val testDeviceIds = listOf("A9D3CCFDFE7EFAF324465227C5FA8E44")
+//        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+//        MobileAds.setRequestConfiguration(configuration)
         MobileAds.initialize(this) {
         }
     }

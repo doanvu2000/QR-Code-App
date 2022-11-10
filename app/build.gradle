@@ -4,19 +4,18 @@ plugins {
     id 'kotlin-kapt'
     id 'io.gitlab.arturbosch.detekt' version "$detekt_version"
     id 'androidx.navigation.safeargs'
-    id 'com.google.firebase.crashlytics'
     id 'kotlinx-serialization'
     id 'kotlin-parcelize'
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.dd.company.qrscan"
         minSdk 21
-        targetSdk 32
-        versionCode 1
+        targetSdk 33
+        versionCode 3
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -24,7 +23,10 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            ndk {
+                debugSymbolLevel 'symbol_table'
+            }
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
