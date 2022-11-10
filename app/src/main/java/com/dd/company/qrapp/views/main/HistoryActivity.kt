@@ -9,12 +9,13 @@ import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityHistoryBinding
+import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
 import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.views.adapter.HistoryAdapter
 import com.dd.company.qrapp.widget.dialog.AlertMessageDialog
 import com.dd.company.qrapp.widget.recyclerview.RecyclerUtils
-import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.*
 
 class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
 
@@ -26,10 +27,42 @@ class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
         supportActionBar?.hide()
         initRecyclerView()
         binding.toolbar.setTitleColor(R.color.white)
+        showAds()
+    }
+
+    private fun showAds() {
         val adRequest = AdRequest.Builder()
             .build()
         Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
-        binding.adView.loadAd(adRequest)
+        if (binding.adView.childCount > 0) return
+        val adView = AdView(this)
+        adView.apply {
+            adUnitId = "ca-app-pub-7304974533758848/5274950434"
+            setAdSize(getAdSizeFollowScreen())
+            loadAd(adRequest)
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    Log.d("dddd", "Ad is loaded!")
+                }
+
+                override fun onAdClosed() {
+                    Log.d("dddd", "Ad is closed!")
+                }
+
+                fun onAdFailedToLoad(errorCode: Int) {
+                    Log.d("dddd", "Ad failed to load! error code: $errorCode")
+                }
+
+                fun onAdLeftApplication() {
+                    Log.d("dddd", "Ad left application!")
+                }
+
+                override fun onAdOpened() {
+                    Log.d("dddd", "Ad is opened!")
+                }
+            }
+        }
+        binding.adView.addView(adView)
     }
 
     private fun initRecyclerView() {

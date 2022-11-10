@@ -6,8 +6,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.util.DisplayMetrics
 import android.util.TypedValue
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdSize
 
 fun Context.getColorWithAttr(resId: Int): Int {
     val typedValue = TypedValue()
@@ -51,3 +53,4 @@ fun Context.openAppSetting() {
     intent.data = uri
     startActivity(intent)
 }
+

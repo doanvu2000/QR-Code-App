@@ -31,12 +31,12 @@
         android:padding="10dp"
         tools:listitem="@layout/layout_item_history" />
 
-    <com.google.android.gms.ads.AdView
+    <LinearLayout
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-7304974533758848/5274950434" />
+        android:orientation="horizontal">
+    </LinearLayout>
 
 </LinearLayout>

@@ -10,10 +10,11 @@ import android.widget.Toast
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityResultBinding
+import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
 import com.dd.company.qrapp.extensions.setOnSafeClick
 import com.dd.company.qrapp.utils.openActivity
 import com.dd.company.qrapp.views.main.HistoryActivity
-import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.*
 
 
 class ResultActivity : BaseActivity<ActivityResultBinding>() {
@@ -23,10 +24,42 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
         initData()
         binding.tvResult.text = result
         supportActionBar?.hide()
+        showAds()
+    }
+
+    private fun showAds() {
         val adRequest = AdRequest.Builder()
             .build()
         Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
-        binding.adView.loadAd(adRequest)
+        if (binding.adView.childCount > 0) return
+        val adView = AdView(this)
+        adView.apply {
+            adUnitId = "ca-app-pub-7304974533758848/5274950434"
+            setAdSize(getAdSizeFollowScreen())
+            loadAd(adRequest)
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    Log.d("dddd", "Ad is loaded!")
+                }
+
+                override fun onAdClosed() {
+                    Log.d("dddd", "Ad is closed!")
+                }
+
+                fun onAdFailedToLoad(errorCode: Int) {
+                    Log.d("dddd", "Ad failed to load! error code: $errorCode")
+                }
+
+                fun onAdLeftApplication() {
+                    Log.d("dddd", "Ad left application!")
+                }
+
+                override fun onAdOpened() {
+                    Log.d("dddd", "Ad is opened!")
+                }
+            }
+        }
+        binding.adView.addView(adView)
     }
 
     override fun initListener() {

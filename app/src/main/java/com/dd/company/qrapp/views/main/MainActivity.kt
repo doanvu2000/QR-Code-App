@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -18,16 +19,14 @@ import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityMainBinding
+import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
 import com.dd.company.qrapp.extensions.openAppSetting
 import com.dd.company.qrapp.extensions.showDialogConfirm
 import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.utils.openActivity
 import com.dd.company.qrapp.views.ResultActivity
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.*
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
@@ -64,39 +63,54 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initListener() {
+        initTestDevice()
+        showAds()
+        checkPermission()
+    }
+
+    private fun initTestDevice() {
         //First: see your log: Use RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()....
         //set up test device
-        val testDeviceIds = listOf("A57F2822EA738A475172B5A0C9D42961")
+        val testDeviceIds = listOf("A9D3CCFDFE7EFAF324465227C5FA8E44")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
-        MobileAds.initialize(this){
+        MobileAds.initialize(this) {
         }
+    }
+
+    private fun showAds() {
         val adRequest = AdRequest.Builder()
             .build()
         Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
-        binding.adView.loadAd(adRequest)
-        checkPermission()
-        binding.adView.adListener = object : AdListener(){
-            override fun onAdLoaded() {
-                Log.d("dddd", "Ad is loaded!")
-            }
+        if (binding.adView.childCount > 0) return
+        val adView = AdView(this)
+        adView.apply {
+            adUnitId = "ca-app-pub-7304974533758848/5274950434"
+            setAdSize(getAdSizeFollowScreen())
+            loadAd(adRequest)
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    Log.d("dddd", "Ad is loaded!")
+                }
 
-            override fun onAdClosed() {
-                Log.d("dddd", "Ad is closed!")
-            }
+                override fun onAdClosed() {
+                    Log.d("dddd", "Ad is closed!")
+                }
 
-            fun onAdFailedToLoad(errorCode: Int) {
-                Log.d("dddd", "Ad failed to load! error code: $errorCode")
-            }
+                fun onAdFailedToLoad(errorCode: Int) {
+                    Log.d("dddd", "Ad failed to load! error code: $errorCode")
+                }
 
-            fun onAdLeftApplication() {
-                Log.d("dddd", "Ad left application!")
-            }
+                fun onAdLeftApplication() {
+                    Log.d("dddd", "Ad left application!")
+                }
 
-            override fun onAdOpened() {
-                Log.d("dddd", "Ad is opened!")
+                override fun onAdOpened() {
+                    Log.d("dddd", "Ad is opened!")
+                }
             }
         }
+        binding.adView.addView(adView)
     }
 
     override fun initData() {
@@ -145,7 +159,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun saveToHistory(result: String) {
-        val history = LocalCache.getInstance().getParcelable(HISTORY, History::class.java) ?: History()
+        val history =
+            LocalCache.getInstance().getParcelable(HISTORY, History::class.java) ?: History()
         history.listData.add(0, result)
         LocalCache.getInstance().put(HISTORY, history)
     }
