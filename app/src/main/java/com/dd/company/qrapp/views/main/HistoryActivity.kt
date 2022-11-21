@@ -19,7 +19,7 @@ import com.google.android.gms.ads.*
 class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
 
     private val adapter by lazy {
-        HistoryAdapter()
+        HistoryAdapter(mutableListOf())
     }
 
     override fun initView() {
@@ -47,7 +47,7 @@ class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
     }
 
     override fun initListener() {
-        adapter.setOnClickItemRecyclerView { result, _ ->
+        adapter.setOnClickItemRecyclerView = { result, _ ->
             val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText(RESULT, result)
             clipboard.setPrimaryClip(clip)
