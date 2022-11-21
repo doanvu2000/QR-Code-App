@@ -3,26 +3,38 @@ package com.dd.company.qrapp.views.main
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.Bundle
 import com.dd.company.qrapp.R
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityHistoryBinding
 import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
+import com.dd.company.qrapp.extensions.viewBinding
 import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.views.adapter.HistoryAdapter
 import com.dd.company.qrapp.widget.dialog.AlertMessageDialog
 import com.dd.company.qrapp.widget.recyclerview.RecyclerUtils
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
-class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
+class HistoryActivity : BaseActivity() {
+
+    private val binding by viewBinding(ActivityHistoryBinding::inflate)
 
     private val adapter by lazy {
         HistoryAdapter(mutableListOf())
     }
 
-    override fun initView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initData()
+        initView()
+        initListener()
+    }
+
+    fun initView() {
         supportActionBar?.hide()
         initRecyclerView()
         binding.toolbar.setTitleColor(R.color.white)
@@ -87,8 +99,9 @@ class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
         })
     }
 
-    override fun initData() {
-        val list = LocalCache.getInstance().getParcelable(HISTORY, History::class.java)?.listData ?: mutableListOf()
+    fun initData() {
+        val list = LocalCache.getInstance().getParcelable(HISTORY, History::class.java)?.listData
+            ?: mutableListOf()
         adapter.addData(list)
     }
 }
