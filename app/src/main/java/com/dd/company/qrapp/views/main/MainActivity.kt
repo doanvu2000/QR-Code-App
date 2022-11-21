@@ -12,7 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.dd.company.qrapp.R
 import com.dd.company.qrapp.base.BaseActivity
@@ -20,19 +19,19 @@ import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityMainBinding
 import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
-import com.dd.company.qrapp.extensions.openAppSetting
 import com.dd.company.qrapp.extensions.showDialogConfirm
 import com.dd.company.qrapp.extensions.viewBinding
 import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.views.ResultActivity
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
-import java.lang.RuntimeException
 
 class MainActivity : BaseActivity() {
 
@@ -49,13 +48,8 @@ class MainActivity : BaseActivity() {
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (!isGranted) {
-                showDialogConfirm(
-                    "",
-                    getString(R.string.non_permission)
-                ) {
-                    openAppSetting()
-                }
+            if (isGranted) {
+                resumeBarcode()
             }
         }
 
@@ -156,7 +150,7 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.choose_image -> requestPickImage.launch("image/*")
-            R.id.history -> startActivity(Intent(this,HistoryActivity::class.java))
+            R.id.history -> startActivity(Intent(this, HistoryActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
