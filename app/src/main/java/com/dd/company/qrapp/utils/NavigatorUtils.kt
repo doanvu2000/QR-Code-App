@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.*
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.fragment.BaseFragment
-import com.dd.company.qrapp.base.BaseVMActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,18 +22,6 @@ import java.lang.reflect.ParameterizedType
 
 fun <KClass> Context.getGenericSuperclass(position: Int): Class<KClass> {
     return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[position] as Class<KClass>
-}
-
-fun FragmentActivity.getBaseVMActivity(): BaseVMActivity<*, *>? {
-    return if (this is BaseVMActivity<*, *>) {
-        this
-    } else null
-}
-
-fun FragmentActivity.getBaseActivity(): BaseActivity<*>? {
-    return if (this is BaseActivity<*>) {
-        this
-    } else null
 }
 
 fun FragmentActivity.getBaseFragment(): BaseFragment<*>? {
@@ -115,45 +102,12 @@ fun <K : Parcelable> AppCompatActivity.getParcelableBundle(key: String): K? {
     }
 }
 
-/***
- * Fragment navigator in activity
- *
- */
-
-private fun FragmentActivity.idFragmentContainer(): Int =
-    getBaseActivity()?.idFragmentContainer() ?: 0
-
-fun FragmentActivity.replaceFragment(
-    fragment: Fragment,
-    addToBackStack: Boolean? = false, transit: Int? = FragmentTransaction.TRANSIT_UNSET,
-) {
-    val transaction = this.supportFragmentManager.beginTransaction()
-//        .setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
-        .setReorderingAllowed(true)
-        .replace(idFragmentContainer(), fragment, fragment::class.java.name)
-    addToBackStack?.let { if (it) transaction.addToBackStack(fragment::class.java.name) }
-    transit?.let { if (it != FragmentTransaction.TRANSIT_UNSET) transaction.setTransition(it) }
-    transaction.commit()
-}
 
 /**
  * Child fragment
  */
 
 private fun Fragment.idFragmentContainer(): Int = getBaseFragment()?.idFragmentContainer() ?: 0
-
-fun Fragment.replaceFragment(
-    fragment: Fragment,
-    addToBackStack: Boolean? = false, transit: Int? = FragmentTransaction.TRANSIT_UNSET,
-) {
-    val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-        .setReorderingAllowed(true)
-        .replace(requireActivity().idFragmentContainer(), fragment, fragment::class.java.name)
-    addToBackStack?.let { if (it) transaction.addToBackStack(fragment::class.java.name) }
-    transit?.let { if (it != FragmentTransaction.TRANSIT_UNSET) transaction.setTransition(it) }
-    transaction.commit()
-}
 
 fun Fragment.replaceChildFragment(
     fragment: Fragment,
@@ -200,10 +154,6 @@ fun findChildFragment(parentFragment: Fragment, TAG: String): Fragment? {
 
 fun findLastChildFragment(parentFragment: Fragment): Fragment {
     return parentFragment.childFragmentManager.fragments.last()
-}
-
-fun FragmentActivity.getCurrentFragment(): BaseFragment<*> {
-    return supportFragmentManager.findFragmentById(idFragmentContainer()) as BaseFragment<*>
 }
 
 fun Fragment.popChildFragment(parentFragment: Fragment = this) {
