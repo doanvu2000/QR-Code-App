@@ -7,13 +7,14 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.dd.company.qrapp.R
-import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityMainBinding
@@ -24,15 +25,24 @@ import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
 import com.dd.company.qrapp.utils.openActivity
 import com.dd.company.qrapp.views.ResultActivity
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
-import java.lang.RuntimeException
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initView()
+        initListener()
+    }
 
     var mIntent: Intent = Intent()
     private var isInvertedScan = false
@@ -55,13 +65,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
         }
 
-    override fun initView() {
+    private fun initView() {
         LocalCache.initialize(this)
         binding.barcodeView.setStatusText("")
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#2DC9BC")))
     }
 
-    override fun initListener() {
+    private fun initListener() {
         initTestDevice()
         showAds()
         checkPermission()
@@ -90,9 +100,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.adView.addView(adView)
     }
 
-    override fun initData() {
-    }
-
     private fun checkPermission() {
         when (PackageManager.PERMISSION_GRANTED) {
             ContextCompat.checkSelfPermission(
@@ -105,10 +112,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 requestPermissionLauncher.launch(Manifest.permission.CAMERA)
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     private fun resumeBarcode() {
@@ -173,7 +176,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             val bitmap = BinaryBitmap(HybridBinarizer(source))
             val reader: Reader = MultiFormatReader()
             val result = reader.decode(bitmap)
-            Toast.makeText(this, "${result.text}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, result.text, Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             showDialogConfirm("", getString(R.string.image_has_no_qr), false) {}
         }
