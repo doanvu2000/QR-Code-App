@@ -34,7 +34,7 @@ class HistoryActivity : BaseActivity() {
         initListener()
     }
 
-    fun initView() {
+    private fun initView() {
         supportActionBar?.hide()
         initRecyclerView()
         binding.toolbar.setTitleColor(R.color.white)
@@ -58,7 +58,7 @@ class HistoryActivity : BaseActivity() {
         RecyclerUtils.setGridManager(this, binding.rcvHistory, adapter)
     }
 
-    override fun initListener() {
+    private fun initListener() {
         adapter.setOnClickItemRecyclerView = { result, _ ->
             val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText(RESULT, result)
