@@ -7,8 +7,6 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.util.DisplayMetrics
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -32,6 +30,7 @@ import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
+import java.lang.RuntimeException
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -81,34 +80,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun showAds() {
         val adRequest = AdRequest.Builder()
             .build()
-        Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
         if (binding.adView.childCount > 0) return
         val adView = AdView(this)
         adView.apply {
             adUnitId = "ca-app-pub-7304974533758848/5274950434"
             setAdSize(getAdSizeFollowScreen())
             loadAd(adRequest)
-            adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    Log.d("dddd", "Ad is loaded!")
-                }
-
-                override fun onAdClosed() {
-                    Log.d("dddd", "Ad is closed!")
-                }
-
-                fun onAdFailedToLoad(errorCode: Int) {
-                    Log.d("dddd", "Ad failed to load! error code: $errorCode")
-                }
-
-                fun onAdLeftApplication() {
-                    Log.d("dddd", "Ad left application!")
-                }
-
-                override fun onAdOpened() {
-                    Log.d("dddd", "Ad is opened!")
-                }
-            }
         }
         binding.adView.addView(adView)
     }
@@ -122,7 +99,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 this,
                 Manifest.permission.CAMERA
             ) -> {
-
+                resumeBarcode()
             }
             else -> {
                 requestPermissionLauncher.launch(Manifest.permission.CAMERA)
@@ -132,7 +109,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onResume() {
         super.onResume()
-        resumeBarcode()
     }
 
     private fun resumeBarcode() {
@@ -150,7 +126,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>?) {
                     isInvertedScan = !isInvertedScan
                     mIntent.putExtra(Intents.Scan.INVERTED_SCAN, isInvertedScan)
-                    it.initializeFromIntent(intent)
+                    it.initializeFromIntent(mIntent)
                 }
 
             })

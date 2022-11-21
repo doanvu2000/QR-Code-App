@@ -3,7 +3,6 @@ package com.dd.company.qrapp.views.main
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.util.Log
 import com.dd.company.qrapp.R
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.HISTORY
@@ -33,34 +32,12 @@ class HistoryActivity : BaseActivity<ActivityHistoryBinding>() {
     private fun showAds() {
         val adRequest = AdRequest.Builder()
             .build()
-        Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
         if (binding.adView.childCount > 0) return
         val adView = AdView(this)
         adView.apply {
             adUnitId = "ca-app-pub-7304974533758848/5274950434"
             setAdSize(getAdSizeFollowScreen())
             loadAd(adRequest)
-            adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    Log.d("dddd", "Ad is loaded!")
-                }
-
-                override fun onAdClosed() {
-                    Log.d("dddd", "Ad is closed!")
-                }
-
-                fun onAdFailedToLoad(errorCode: Int) {
-                    Log.d("dddd", "Ad failed to load! error code: $errorCode")
-                }
-
-                fun onAdLeftApplication() {
-                    Log.d("dddd", "Ad left application!")
-                }
-
-                override fun onAdOpened() {
-                    Log.d("dddd", "Ad is opened!")
-                }
-            }
         }
         binding.adView.addView(adView)
     }

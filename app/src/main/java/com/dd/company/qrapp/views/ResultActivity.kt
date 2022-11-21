@@ -5,7 +5,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.widget.Toast
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.RESULT
@@ -30,7 +29,6 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
     private fun showAds() {
         val adRequest = AdRequest.Builder()
             .build()
-        Log.d("dddd", "is test device: ${adRequest.isTestDevice(this)}")
         if (binding.adView.childCount > 0) return
         val adView = AdView(this)
         adView.apply {
@@ -39,23 +37,18 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
             loadAd(adRequest)
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
-                    Log.d("dddd", "Ad is loaded!")
                 }
 
                 override fun onAdClosed() {
-                    Log.d("dddd", "Ad is closed!")
                 }
 
                 fun onAdFailedToLoad(errorCode: Int) {
-                    Log.d("dddd", "Ad failed to load! error code: $errorCode")
                 }
 
                 fun onAdLeftApplication() {
-                    Log.d("dddd", "Ad left application!")
                 }
 
                 override fun onAdOpened() {
-                    Log.d("dddd", "Ad is opened!")
                 }
             }
         }
