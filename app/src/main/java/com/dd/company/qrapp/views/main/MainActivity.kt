@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -18,21 +19,23 @@ import com.dd.company.qrapp.base.HISTORY
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityMainBinding
 import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
-import com.dd.company.qrapp.extensions.openAppSetting
 import com.dd.company.qrapp.extensions.showDialogConfirm
+import com.dd.company.qrapp.extensions.viewBinding
 import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
-import com.dd.company.qrapp.utils.openActivity
 import com.dd.company.qrapp.views.ResultActivity
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.zxing.*
 import com.google.zxing.client.android.Intents
 import com.google.zxing.common.HybridBinarizer
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
-import java.lang.RuntimeException
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity() {
+
+    private val binding by viewBinding(ActivityMainBinding::inflate)
 
     var mIntent: Intent = Intent()
     private var isInvertedScan = false
@@ -45,23 +48,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (!isGranted) {
-                showDialogConfirm(
-                    "",
-                    getString(R.string.non_permission)
-                ) {
-                    openAppSetting()
-                }
+            if (isGranted) {
+                resumeBarcode()
             }
         }
 
-    override fun initView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initView()
+        initListener()
+    }
+
+    fun initView() {
         LocalCache.initialize(this)
         binding.barcodeView.setStatusText("")
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#2DC9BC")))
     }
 
-    override fun initListener() {
+    fun initListener() {
         initTestDevice()
         showAds()
         checkPermission()
@@ -88,9 +92,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             loadAd(adRequest)
         }
         binding.adView.addView(adView)
-    }
-
-    override fun initData() {
     }
 
     private fun checkPermission() {
@@ -149,7 +150,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.choose_image -> requestPickImage.launch("image/*")
-            R.id.history -> openActivity(HistoryActivity::class.java)
+            R.id.history -> startActivity(Intent(this, HistoryActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

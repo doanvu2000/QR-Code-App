@@ -5,21 +5,34 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.widget.Toast
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityResultBinding
 import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
 import com.dd.company.qrapp.extensions.setOnSafeClick
-import com.dd.company.qrapp.utils.openActivity
+import com.dd.company.qrapp.extensions.viewBinding
 import com.dd.company.qrapp.views.main.HistoryActivity
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 
-class ResultActivity : BaseActivity<ActivityResultBinding>() {
+class ResultActivity : BaseActivity() {
+
+    private val binding by viewBinding(ActivityResultBinding::inflate)
 
     private var result = ""
-    override fun initView() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initData()
+        initView()
+        initListener()
+    }
+
+    fun initView() {
         initData()
         binding.tvResult.text = result
         supportActionBar?.hide()
@@ -55,10 +68,11 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
         binding.adView.addView(adView)
     }
 
-    override fun initListener() {
+    fun initListener() {
         binding.apply {
             btnCopy.setOnSafeClick {
-                val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clipboard: ClipboardManager =
+                    getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 val clip = ClipData.newPlainText(RESULT, result)
                 clipboard.setPrimaryClip(clip)
             }
@@ -67,7 +81,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
             btnShare.setOnSafeClick { shareData() }
             tvShare.setOnSafeClick { shareData() }
             btnBack.setOnSafeClick { onBackPressed() }
-            btnHistory.setOnSafeClick { openActivity(HistoryActivity::class.java) }
+            btnHistory.setOnSafeClick { startActivity(Intent(this@ResultActivity,HistoryActivity::class.java)) }
         }
     }
 
@@ -83,12 +97,16 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(result)))
         } catch (e: Exception) {
-            Toast.makeText(this@ResultActivity, "Cannot open browser with $result", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@ResultActivity,
+                "Cannot open browser with $result",
+                Toast.LENGTH_SHORT
+            ).show()
             e.printStackTrace()
         }
     }
 
-    override fun initData() {
+    fun initData() {
         result = intent.getStringExtra(RESULT) ?: ""
     }
 }
