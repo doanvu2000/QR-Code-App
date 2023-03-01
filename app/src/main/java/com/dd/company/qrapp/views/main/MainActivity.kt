@@ -68,7 +68,6 @@ class MainActivity : BaseActivity() {
     fun initListener() {
         initTestDevice()
         showAds()
-        checkPermission()
     }
 
     private fun initTestDevice() {
@@ -110,6 +109,7 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        checkPermission()
     }
 
     private fun resumeBarcode() {
