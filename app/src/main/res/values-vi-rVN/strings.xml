@@ -12,4 +12,7 @@
     <string name="choose_image">Chọn hình ảnh từ thư viện</string>
     <string name="history_scan">Hiển thị quét lịch sử</string>
     <string name="image_has_no_qr">Hình ảnh không có mã QR</string>
+    <string name="delete_confirm">Xác nhận xóa</string>
+    <string name="delete_all_confirm">Xác nhận xóa tất cả</string>
+    <string name="delete">Xóa</string>
 </resources>

@@ -12,4 +12,7 @@
     <string name="choose_image">갤러리에서 이미지 선택</string>
     <string name="history_scan">기록 스캔 표시</string>
     <string name="image_has_no_qr">이미지에 QR 코드가 없습니다.</string>
+    <string name="delete_confirm">삭제 확인</string>
+    <string name="delete_all_confirm">모두 삭제 확인</string>
+    <string name="delete">삭제</string>
 </resources>

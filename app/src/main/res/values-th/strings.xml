@@ -12,4 +12,7 @@
     <string name="choose_image">เลือกรูปภาพจากแกลเลอรี่</string>
     <string name="history_scan">แสดงการสแกนประวัติ</string>
     <string name="image_has_no_qr">รูปภาพไม่มีรหัส QR</string>
+    <string name="delete_confirm">ยืนยันการลบ</string>
+    <string name="delete_all_confirm">ยืนยันการลบทั้งหมด</string>
+    <string name="delete">ลบ</string>
 </resources>

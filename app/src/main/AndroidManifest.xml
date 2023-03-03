@@ -33,6 +33,8 @@
             android:name="com.dd.company.qrapp.views.ResultActivity"
             android:exported="true" />
         <activity
+            android:launchMode="singleTask"
+            android:taskAffinity=""
             android:name="com.dd.company.qrapp.views.main.HistoryActivity"
             android:exported="true" />
     </application>

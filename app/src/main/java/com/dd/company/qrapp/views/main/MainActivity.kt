@@ -86,7 +86,7 @@ class MainActivity : BaseActivity() {
         if (binding.adView.childCount > 0) return
         val adView = AdView(this)
         adView.apply {
-            adUnitId = "ca-app-pub-7304974533758848/5274950434"
+            adUnitId = getString(R.string.ads_id)
             setAdSize(getAdSizeFollowScreen())
             loadAd(adRequest)
         }
@@ -110,6 +110,16 @@ class MainActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         checkPermission()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.barcodeView.pause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.barcodeView.pause()
     }
 
     private fun resumeBarcode() {

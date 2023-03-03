@@ -12,4 +12,7 @@
     <string name="choose_image">ギャラリーから画像を選択</string>
     <string name="history_scan">履歴スキャンを表示</string>
     <string name="image_has_no_qr">画像に QR コードがありません</string>
+    <string name="delete_confirm">削除の確認</string>
+    <string name="delete_all_confirm">すべて削除の確認</string>
+    <string name="delete">削除</string>
 </resources>

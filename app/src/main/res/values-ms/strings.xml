@@ -12,4 +12,7 @@
     <string name="choose_image">Pilih imej daripada galeri</string>
     <string name="history_scan">Tunjukkan imbasan sejarah</string>
     <string name="image_has_no_qr">Imej tidak mempunyai kod QR</string>
+    <string name="delete_confirm">Sahkan padam</string>
+    <string name="delete_all_confirm">Sahkan padam semua</string>
+    <string name="delete">Padam</string>
 </resources>

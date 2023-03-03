@@ -1,8 +1,6 @@
 package com.dd.company.qrapp.views.main
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.dd.company.qrapp.R
 import com.dd.company.qrapp.base.BaseActivity
@@ -13,6 +11,7 @@ import com.dd.company.qrapp.extensions.getAdSizeFollowScreen
 import com.dd.company.qrapp.extensions.viewBinding
 import com.dd.company.qrapp.model.History
 import com.dd.company.qrapp.pref.LocalCache
+import com.dd.company.qrapp.views.ResultActivity
 import com.dd.company.qrapp.views.adapter.HistoryAdapter
 import com.dd.company.qrapp.widget.dialog.AlertMessageDialog
 import com.dd.company.qrapp.widget.recyclerview.RecyclerUtils
@@ -47,7 +46,7 @@ class HistoryActivity : BaseActivity() {
         if (binding.adView.childCount > 0) return
         val adView = AdView(this)
         adView.apply {
-            adUnitId = "ca-app-pub-7304974533758848/5274950434"
+            adUnitId = getString(R.string.ads_id)
             setAdSize(getAdSizeFollowScreen())
             loadAd(adRequest)
         }
@@ -60,9 +59,9 @@ class HistoryActivity : BaseActivity() {
 
     private fun initListener() {
         adapter.setOnClickItemRecyclerView = { result, _ ->
-            val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText(RESULT, result)
-            clipboard.setPrimaryClip(clip)
+            val intent = Intent(this@HistoryActivity, ResultActivity::class.java)
+            intent.putExtra(RESULT, result)
+            startActivity(intent)
         }
         adapter.onClickRemoveListener = { position ->
             removeItem(position)
@@ -78,10 +77,10 @@ class HistoryActivity : BaseActivity() {
     private fun clearData() {
         AlertMessageDialog(this).also { dialog ->
             dialog.show(
-                title = "Xác nhận xóa",
-                message = "Bạn có chắc chắn muốn xóa toàn bộ lịch sử quét QR?",
-                "Xóa",
-                "Hủy",
+                title = getString(R.string.delete_confirm),
+                message = getString(R.string.delete_all_confirm),
+                getString(R.string.delete),
+                getString(R.string.text_cancel),
                 onClickSubmit = {
                     adapter.clearData()
                     LocalCache.getInstance().clearAll()

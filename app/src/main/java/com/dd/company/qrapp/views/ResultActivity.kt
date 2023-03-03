@@ -7,6 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import com.dd.company.qrapp.R
 import com.dd.company.qrapp.base.BaseActivity
 import com.dd.company.qrapp.base.RESULT
 import com.dd.company.qrapp.databinding.ActivityResultBinding
@@ -45,7 +46,7 @@ class ResultActivity : BaseActivity() {
         if (binding.adView.childCount > 0) return
         val adView = AdView(this)
         adView.apply {
-            adUnitId = "ca-app-pub-7304974533758848/5274950434"
+            adUnitId = getString(R.string.ads_id)
             setAdSize(getAdSizeFollowScreen())
             loadAd(adRequest)
             adListener = object : AdListener() {
