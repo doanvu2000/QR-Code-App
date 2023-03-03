@@ -12,4 +12,7 @@
     <string name="choose_image">Choisissez l\'image de la galerie</string>
     <string name="history_scan">Afficher l\'analyse de l\'historique</string>
     <string name="image_has_no_qr">L\'image n\'a pas de code QR</string>
+    <string name="delete_confirm">Confirmer la suppression</string>
+    <string name="delete_all_confirm">Confirmer la suppression de tout</string>
+    <string name="delete">Supprimer</string>
 </resources>

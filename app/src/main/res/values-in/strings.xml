@@ -12,5 +12,8 @@
     <string name="choose_image">Pilih gambar dari galeri</string>
     <string name="history_scan">Tampilkan pemindaian riwayat</string>
     <string name="image_has_no_qr">Gambar tidak memiliki kode QR</string>
+    <string name="delete_confirm">Konfirmasi penghapusan</string>
+    <string name="delete_all_confirm">Konfirmasi penghapusan semua</string>
+    <string name="delete">Hapus</string>
 </resources>
 

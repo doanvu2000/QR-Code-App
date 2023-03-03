@@ -12,4 +12,7 @@
     <string name="choose_image">从图库中选择图像</string>
     <string name="history_scan">显示历史扫描</string>
     <string name="image_has_no_qr">图片没有二维码</string>
+    <string name="delete_confirm">确认删除</string>
+    <string name="delete_all_confirm">确认全部删除</string>
+    <string name="delete">删除</string>
 </resources>
