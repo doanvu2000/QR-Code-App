@@ -185,6 +185,10 @@ class MainActivity : BaseActivity() {
             val reader: Reader = MultiFormatReader()
             val result = reader.decode(bitmap)
             Toast.makeText(this, "${result.text}", Toast.LENGTH_SHORT).show()
+            saveToHistory(result.text)
+            val intent = Intent(this@MainActivity, ResultActivity::class.java)
+            intent.putExtra(RESULT, result?.text ?: "")
+            startActivity(intent)
         } catch (e: Exception) {
             showDialogConfirm("", getString(R.string.image_has_no_qr), false) {}
         }
